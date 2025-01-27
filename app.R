@@ -8,6 +8,10 @@ library(scales)
 library(writexl)
 library(rsconnect)
 library(usethis)
+library(rmarkdown)
+library(knitr)
+library(reticulate)
+
 
 ui <- fluidPage(
     # Application title
