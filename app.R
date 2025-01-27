@@ -9,8 +9,6 @@ library(writexl)
 library(rsconnect)
 library(usethis)
 
-install.packages("usethis")
-
 ui <- fluidPage(
     # Application title
     titlePanel("Converter"),
