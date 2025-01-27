@@ -7,6 +7,9 @@ library(thematic)
 library(scales)
 library(writexl)
 library(rsconnect)
+library(usethis)
+
+install.packages("usethis")
 
 ui <- fluidPage(
     # Application title
