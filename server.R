@@ -31,7 +31,6 @@ server <- function(input, output, session) {
             
             # Update data by binding new row
             data(bind_rows(data(), new_row))
-            print(data())
         }
     )
     

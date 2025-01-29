@@ -118,6 +118,18 @@
       ],
       "Hash": "6603bfcbc7883a5fed41fb13042a3899"
     },
+    "XML": {
+      "Package": "XML",
+      "Version": "3.99-0.18",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "methods",
+        "utils"
+      ],
+      "Hash": "4a5eca1070ecfe97e68727ed4b9a89fa"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.1",
@@ -1616,6 +1628,19 @@
         "xtable"
       ],
       "Hash": "4b4477baa9a939c5577e5ddb4bf01f28"
+    },
+    "shinyDatetimePickers": {
+      "Package": "shinyDatetimePickers",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "htmltools",
+        "lubridate",
+        "reactR",
+        "shiny"
+      ],
+      "Hash": "d1cca684491fd0721f36f213d9be6c20"
     },
     "shinyWidgets": {
       "Package": "shinyWidgets",
