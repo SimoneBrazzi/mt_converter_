@@ -1,42 +1,17 @@
-source("script.R")
-
-# Define server logic required to manage data and outputs
 server <- function(input, output, session) {
-    
     # default empty data and type instantiation
-    data <- reactiveVal(
-        tibble(
-            MsgId = character(),
-            CreDtTm = as_datetime(character()),
-            NbOfTxs = character(),
-            CtrlSum = numeric(),
-            Type = character()
+    data <- reactive({
+        req(input$upload)
+        
+        ext <- tools::file_ext(input$upload$name)
+        switch(ext,
+               xlsx = readxl::read_xlsx(input$upload$datapath),
+               validate("Invalid file; Please upload a .xlsx file")
         )
-    )
+    })
     
-    # 
-    observeEvent(
-        input$confirm,
-        {
-            req(input$MsgId, input$CreDtTm, input$NbOfTxs, input$CtrlSum, input$type)
-            
-            # Create new row
-            new_row <- tibble(
-                Type = input$type,
-                MsgId = input$MsgId,
-                CreDtTm = input$CreDtTm, 
-                NbOfTxs = input$NbOfTxs,
-                CtrlSum = input$CtrlSum
-            )
-            
-            # Update data by binding new row
-            data(bind_rows(data(), new_row))
-        }
-    )
-    
-
-    # Reactive for currency input to impute to amount in gt table
-    currency_ <- reactive({input$currency})
+    # Reactive value to store the XML content
+    xmlContent <- reactiveVal(NULL)
     
     # Render the gt table
     output$table <- render_gt({
@@ -46,29 +21,30 @@ server <- function(input, output, session) {
             opt_interactive()
     })
     
-    # reset button to empty tibble
-    observeEvent(input$reset, {
-        data(tibble(
-            MsgId = character(),
-            CreDtTm = as.Date(character()),
-            NbOfTxs = character(),
-            CtrlSum = numeric(),
-            Type = character()
-        ))
+    # observe type selection
+    observeEvent(input$run, {
+        if (input$type == "MT540") {
+            # Update result text
+            output$result <- renderText("Running code to convert MT540 to semt.017...")
+            
+            # Convert to XML
+            xml <- convert_to_xml(data())
+            xmlContent(xml) # Store in reactive value
+            
+            # Update status text
+            output$status <- renderText("Finished!")
+        } else {
+            output$result <- renderText("Not yet implemented!")
+        } 
     })
     
     # download button
     output$downloadData <- downloadHandler(
         filename = function() {
-            paste("data-", Sys.Date(), ".xlsx", sep="")
+            paste("data-", Sys.Date(), ".xml", sep = "")
         },
         content = function(file) {
-            write_xlsx(data(), file)
+            write_xml(xmlContent(), file)
         }
     )
-    
-    
 }
-
-# Run the application
-# sshinyApp(ui = ui, server = server)

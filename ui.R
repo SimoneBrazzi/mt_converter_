@@ -1,4 +1,21 @@
-source("script.R")
+library(tidyverse)
+library(shiny)
+library(shinyWidgets)
+library(ggplot2)
+library(gt)
+library(thematic)
+library(scales)
+library(writexl)
+library(rsconnect)
+library(usethis)
+library(rmarkdown)
+library(knitr)
+library(reticulate)
+library(xml2)
+library(XML)
+
+library(xml2)
+library(tidyverse)
 
 
 ui <- fluidPage(
@@ -8,76 +25,33 @@ ui <- fluidPage(
   # Sidebar with inputs and main panel with table output
   sidebarLayout(
     sidebarPanel(
-      # Reset button
-      actionButton(
-        inputId = "reset",
-        label = "Reset"
+      # Upload 
+      fileInput(
+        inputId = "upload",
+        label = "Upload a file",
+        multiple = FALSE,
+        accept = ".xlsx",
+        buttonLabel = "Browse...",
+        placeholder = "No file selected..."
       ),
-      
-      hr(),
-      # MsgId  MessageIdentification
-      textInput(
-        inputId = "MsgId",
-        label = "Message Identification",
-        value = "",
-        placeholder = "Enter text here"
-      ),
-      # CreDtTm  CreationDateTime
-      dateInput(
-        inputId = "CreDtTm",
-        label = "Creation Date Time",
-        value = Sys.time(),
-        format = "yyyy-mm-dd"
-      ),
-      # NbOfTxs  NumberOfTransactions
-      textInput(
-        inputId = "NbOfTxs",
-        label = "Number Of Transactions",
-        value = "",
-        placeholder = "Enter text here"
-      ),
-      # CtrlSum  ControlSum
-      autonumericInput(
-        inputId = "CtrlSum",
-        label = "Control Sum",
-        min = 0,
-        value = NULL,
-        decimalPlaces = 2,
-        digitGroupSeparator = ",",
-        decimalCharacter = "."
-      ),
-      #### InitgPty  InitiatingParty -> list of MessageElement
-      
-      hr(),
       
       # Type selection
       selectizeInput(
         inputId = "type",
         label = "Type",
-        choices = c("MT103", "MT109", "Other"),
+        choices = c("MT103", "MT109", "MT540"),
         selected = NULL,
         multiple = FALSE,
         options = list(placeholder = "Select a type")
       ),
-      
-      # Currency selection
-      selectizeInput(
-        inputId = "currency",
-        label = "Currency",
-        choices = c("EUR", "USD", "GBP", "CHF"), # infor_currencies() to check
-        selected = "€",
-        multiple = FALSE
-      ),
-      
-      
-      br(),
-      
-      # Confirm button
       actionButton(
-        inputId = "confirm",
-        label = "Confirm"
+        inputId = "run",
+        label = "Run!",
+        icon = icon(name = "glyphicon glyphicon-play", lib = "glyphicon")
       ),
-      
+      textOutput("result"),
+      textOutput("status"),
+    
       hr(),
       
       # Download button
