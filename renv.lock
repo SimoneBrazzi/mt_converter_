@@ -1629,19 +1629,6 @@
       ],
       "Hash": "4b4477baa9a939c5577e5ddb4bf01f28"
     },
-    "shinyDatetimePickers": {
-      "Package": "shinyDatetimePickers",
-      "Version": "1.2.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "htmltools",
-        "lubridate",
-        "reactR",
-        "shiny"
-      ],
-      "Hash": "d1cca684491fd0721f36f213d9be6c20"
-    },
     "shinyWidgets": {
       "Package": "shinyWidgets",
       "Version": "0.8.7",
