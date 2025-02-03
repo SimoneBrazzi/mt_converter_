@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:sese.023.001.09" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SctiesSttlmTxInstr>
+    <TxId>20240201123456</TxId>
+    <SttlmTpAndAddtlParams>
+      <SttlmTp>FOP</SttlmTp>
+      <AddtlParams>
+        <MsgFctn>NEWM</MsgFctn>
+      </AddtlParams>
+    </SttlmTpAndAddtlParams>
+    <TxDtls>
+      <TradDt>2024-02-01</TradDt>
+      <SttlmDt>2024-02-05</SttlmDt>
+      <FinInstrmId>
+        <ISIN>DE000DB9VWC0</ISIN>
+        <Desc>Deutsche Post AG Express-Zertifikat</Desc>
+      </FinInstrmId>
+      <FinInstrmQty>
+        <Unit>1000</Unit>
+      </FinInstrmQty>
+      <SfkpgAcct>9876543210</SfkpgAcct>
+    </TxDtls>
+    <SttlmParams1>[ comment ]</SttlmParams1>
+    <SttlmParams>
+      <SfkpgPlc>
+        <BIC>DEUTDEFFXXX</BIC>
+      </SfkpgPlc>
+      <DlvrgPty>
+        <BIC>DEUTDEFFXXX</BIC>
+        <Nm>Deutsche Bank AG</Nm>
+        <Acct>XXXXX12345</Acct>
+      </DlvrgPty>
+      <RcvgPty>
+        <BIC>FEBIITM2XXX</BIC>
+        <Nm>Fineco Bank S.P.A.</Nm>
+        <Acct>2547926</Acct>
+      </RcvgPty>
+    </SttlmParams>
+    <SttlmParams6>[ comment ]</SttlmParams6>
+    <RgltryRptg>
+      <RptgTp>TRAF</RptgTp>
+      <RptgDtls>
+        <Id>TRAF-2024-002</Id>
+      </RptgDtls>
+    </RgltryRptg>
+  </SctiesSttlmTxInstr>
+</Document>
